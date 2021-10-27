@@ -1,25 +1,34 @@
 let balls = document.getElementsByClassName('ball')
 let ballNumber = 6;
+let resposta = document.getElementById('answer')
 
-function createBall (){
+
+function createBall() {
 
   for (let i = 0; i < ballNumber; i += 1) {
 
     let ballSelected = i;
     ballSelected = document.createElement('div');
-    document.getElementsByTagName('body')[0].appendChild(ballSelected)
+    document.getElementsByTagName('body')[0].appendChild(ballSelected);
 
+    ballSelected.id = i
     ballSelected.className = "ball";
+    ballSelected.addEventListener('click', response)
+
+    let cor = [];
+    cor[i] = generateColors()
+    ballSelected.style.backgroundColor = cor[i]
+   
 
 
-       let cor = [];
-       cor[i] = generateColors()
-      ballSelected.style.backgroundColor = cor[i]
-      ballSelected.id = cor[i] ;
+
   }
 
 
 }
+
+createBall()
+let mainColor= HexToRGB()
 
 function generateColors() {
 
@@ -33,7 +42,7 @@ function generateColors() {
   }
   // Minha contribuição para a formula que vez por outra retornava numeros quebrados
 
-return randomColor;
+  return randomColor;
 
   // - randomColor receve "#" concatenado com o arredondamento para baixo (Math.floor()) 
   //de um numero aleatorio entre zero e um  (math.random())
@@ -48,4 +57,53 @@ return randomColor;
   //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 }
 
-createBall()
+
+function response(e) {
+
+  guessBall= document.getElementById(e.target.id)
+  ballBGC = guessBall.style.backgroundColor
+
+
+if (ballBGC == mainColor){
+ resposta.innerText= 'Acertou!'
+} else {
+  resposta.innerText= 'Errou! Tente novamente!!'
+
+}
+
+
+
+
+
+  console.log('yes')
+
+
+}
+
+
+function HexToRGB() {
+
+
+  randomId = Math.floor(Math.random() * 6);
+
+    randomBall = document.getElementById(randomId);
+console.log(randomId)
+  let  hexdec = ''
+  hexdec = randomBall.style.backgroundColor
+let arrHexdec = '';
+arrHexdec = hexdec.split('')
+arrHexdec.shift()
+arrHexdec.shift()
+arrHexdec.shift()
+
+presentationText =arrHexdec.join('')
+document.getElementById('rgb-color').innerText = presentationText 
+ 
+ 
+
+return randomBall.style.backgroundColor
+
+
+  }
+
+  
