@@ -30,6 +30,30 @@ function generateColors() {
   // https://stackoverflow.com/questions/1484506/random-color-generator
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 }
+
+function pontuation() {
+  let hScore = document.getElementById('score').innerText;
+  hScore = parseInt(hScore, 10) + 3;
+
+  document.getElementById('score').innerText = hScore;
+  localStorage.setItem('lastScore', hScore);
+}
+function HexToRGB() {
+  const randomId = Math.floor(Math.random() * 6);
+  const randomBall = document.getElementById(randomId);
+  console.log(randomId);
+  let hexdec = '';
+  hexdec = randomBall.style.backgroundColor;
+  let arrHexdec = '';
+  arrHexdec = hexdec.split('');
+  arrHexdec.shift();
+  arrHexdec.shift();
+  arrHexdec.shift();
+  const presentationText = arrHexdec.join('');
+  document.getElementById('rgb-color').innerText = presentationText;
+  return randomBall.style.backgroundColor;
+}
+let mainColor;
 function response(e) {
   const guessBall = document.getElementById(e.target.id);
   const ballBGC = guessBall.style.backgroundColor;
@@ -57,28 +81,4 @@ function createBall() {
   }
 }
 createBall();
-function HexToRGB() {
-  const randomId = Math.floor(Math.random() * 6);
-  const randomBall = document.getElementById(randomId);
-  console.log(randomId);
-  let hexdec = '';
-  hexdec = randomBall.style.backgroundColor;
-  let arrHexdec = '';
-  arrHexdec = hexdec.split('');
-  arrHexdec.shift();
-  arrHexdec.shift();
-  arrHexdec.shift();
-  const presentationText = arrHexdec.join('');
-  document.getElementById('rgb-color').innerText = presentationText;
-  return randomBall.style.backgroundColor;
-}
-const mainColor = HexToRGB();
-
-function pontuation() {
-  let hScore = document.getElementById('score').innerText;
-  hScore = parseInt(hScore, 10) + 3;
-
-  document.getElementById('score').innerText = hScore;
-  localStorage.setItem('lastScore', hScore);
-}
-
+mainColor = HexToRGB();
