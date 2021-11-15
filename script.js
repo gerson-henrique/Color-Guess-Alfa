@@ -30,7 +30,19 @@ function generateColors() {
   // https://stackoverflow.com/questions/1484506/random-color-generator
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
 }
+function response(e) {
+  const guessBall = document.getElementById(e.target.id);
+  const ballBGC = guessBall.style.backgroundColor;
 
+  if (ballBGC === mainColor) {
+    resposta.innerText = 'Acertou!';
+    pontuation();
+  } else {
+    resposta.innerText = 'Errou! Tente novamente!!';
+  }
+
+  console.log('yes');
+}
 function createBall() {
   for (let i = 0; i < ballNumber; i += 1) {
     let ballSelected = i;
@@ -69,16 +81,4 @@ function pontuation() {
   document.getElementById('score').innerText = hScore;
   localStorage.setItem('lastScore', hScore);
 }
-function response(e) {
-  const guessBall = document.getElementById(e.target.id);
-  const ballBGC = guessBall.style.backgroundColor;
 
-  if (ballBGC === mainColor) {
-    resposta.innerText = 'Acertou!';
-    pontuation();
-  } else {
-    resposta.innerText = 'Errou! Tente novamente!!';
-  }
-
-  console.log('yes');
-}
